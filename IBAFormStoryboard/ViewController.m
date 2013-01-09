@@ -30,7 +30,16 @@
 													  withObject:nil
 													  afterDelay:1.];
         
-		NSLog(@"User %@", user.email);
+		UIAlertView *info = [[UIAlertView alloc]
+                             initWithTitle:@"Form Info"
+                             message:[NSString stringWithFormat:@"User Entered: \nEmail - %@\nPassword - %@",
+                                      user.email, user.password]
+                             delegate:nil
+                             cancelButtonTitle:@"OK"
+                             otherButtonTitles:nil];
+        
+        // shows alert to user
+        [info show];
 	};
     
     UserDataSource *dataSource = [[UserDataSource alloc] initWithModel:user formAction:action];
