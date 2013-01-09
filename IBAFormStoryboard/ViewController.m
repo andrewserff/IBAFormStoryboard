@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "User.h"
+#import "UserDataSource.h"
 
 @interface ViewController ()
 
@@ -14,10 +16,26 @@
 
 @implementation ViewController
 
+@synthesize tableView;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self setTableView:tableView];
+    User *user = [User alloc];
+    IBAButtonFormFieldBlock action = ^{
+		[[IBAInputManager sharedIBAInputManager] performSelector:@selector(setActiveInputRequestor:)
+													  withObject:nil
+													  afterDelay:1.];
+        
+		NSLog(@"User %@", user.email);
+	};
+    
+    UserDataSource *dataSource = [[UserDataSource alloc] initWithModel:user formAction:action];
+    [self setFormDataSource:dataSource];
+
 }
 
 - (void)didReceiveMemoryWarning

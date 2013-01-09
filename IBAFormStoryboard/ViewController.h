@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IBAForms/IBAForms.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : IBAFormViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
